@@ -98,7 +98,7 @@
   .comp-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"표시된 가격 외에 추가 비용이 있나요?","acceptedAnswer":{"@type":"Answer","text":"기본 주대와 위스키 세트 구성이 명확하게 안내되어 있으며, 추가 주문 시에만 비용이 발생합니다."}},{"@type":"Question","name":"1부와 2부는 어떻게 다른가요?","acceptedAnswer":{"@type":"Answer","text":"이용 시간대에 따른 구분으로, 이른 시간대인 1부가 조금 더 합리적입니다."}},{"@type":"Question","name":"예약할 때 예약금이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"방문 인원과 시간에 따라 다를 수 있으며, 문의 시 안내해 드립니다."}},{"@type":"Question","name":"인원이 많아도 이용할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"넓은 룸을 갖추고 있어 소규모부터 단체 모임까지 이용 가능합니다."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"표시된 가격 외에 추가 비용이 있나요?","acceptedAnswer":{"@type":"Answer","text":"주대 외에 접객 비용(TC)과 룸 이용료가 별도로 발생합니다. 인원수와 이용 시간에 따라 금액이 달라지므로, 예약 시 방문 인원과 예상 시간을 알려주시면 예상 총액을 미리 안내해 드립니다."}},{"@type":"Question","name":"TC가 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"매니저가 함께하는 자리에 발생하는 접객 비용입니다. 인원수와 이용 시간을 기준으로 계산되며 12만원부터 시작합니다."}},{"@type":"Question","name":"1부와 2부는 어떻게 다른가요?","acceptedAnswer":{"@type":"Answer","text":"이용 시간대에 따른 구분으로, 이른 시간대인 1부가 조금 더 합리적입니다."}},{"@type":"Question","name":"예약할 때 예약금이 필요한가요?","acceptedAnswer":{"@type":"Answer","text":"방문 인원과 시간에 따라 다를 수 있으며, 문의 시 안내해 드립니다."}},{"@type":"Question","name":"인원이 많아도 이용할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"넓은 룸을 갖추고 있어 소규모부터 단체 모임까지 이용 가능합니다."}}]}
 </script>
 </head>
 <body>
@@ -172,6 +172,28 @@
   </div>
 
 
+  <!-- 비용 구성 -->
+  <span class="section-label" style="display:block;margin-top:4rem;">COST</span>
+  <h2 class="section-title">비용은 이렇게 구성됩니다</h2>
+  <div class="section-divider"></div>
+  <p style="color:var(--text-muted);font-size:0.85rem;line-height:2;margin-bottom:0.8rem;">가라오케 이용 비용은 한 가지 항목이 아니라 여러 항목으로 나뉩니다. 처음 오시는 분들이 예상과 다르다고 느끼시는 경우가 대부분 여기에서 비롯되므로, 미리 정리해 드립니다.</p>
+  <div class="composition-list">
+    <div class="comp-item"><span class="comp-num">1</span><span class="comp-text"><strong>주대</strong> — 주문하시는 술 한 병에 대한 금액입니다. 1부 100,000원 / 2부 110,000원이며, 인원에 따라 시작 병 수가 정해집니다. 4명까지는 한 병부터, 5명 이상은 두 병부터 시작합니다. 인원수만큼 곱해지는 구조가 아닙니다.</span></div>
+    <div class="comp-item"><span class="comp-num">2</span><span class="comp-text"><strong>TC (접객 비용)</strong> — 매니저가 함께하는 자리에 발생하는 비용입니다. 인원수와 이용 시간에 따라 계산되며, 12만원부터 시작합니다. 구성에 따라 금액이 달라지므로 예약 시 안내해 드립니다.</span></div>
+    <div class="comp-item"><span class="comp-num">3</span><span class="comp-text"><strong>룸 이용료 (RT)</strong> — 기본 50,000원이며, 이용하시는 룸에 따라 달라집니다.</span></div>
+  </div>
+  <p style="color:var(--text-muted);font-size:0.85rem;line-height:2;margin-top:1rem;">총액은 인원과 이용 시간, 주문하시는 술의 양에 따라 달라집니다. 예약하실 때 방문 인원과 예상 시간을 알려주시면 예상 금액을 미리 계산해 안내해 드립니다.</p>
+
+
+  <!-- VIP 룸 -->
+  <span class="section-label" style="display:block;margin-top:4rem;">VIP ROOM</span>
+  <h2 class="section-title">VIP 룸</h2>
+  <div class="section-divider"></div>
+  <p style="color:var(--text-muted);font-size:0.85rem;line-height:2;margin-bottom:0.9rem;">일반 룸 외에 VIP 룸 3개를 운영하고 있습니다.</p>
+  <p style="color:var(--text-muted);font-size:0.85rem;line-height:2;margin-bottom:0.9rem;">VIP 룸은 룸 이용료가 일반 룸보다 높게 책정되는 대신, 자리 준비 과정에서 우선 안내를 받으실 수 있습니다. 중요한 자리나 원하시는 조건이 분명한 경우에 선택하시면 좋습니다.</p>
+  <p style="color:var(--text-muted);font-size:0.85rem;line-height:2;">룸 수가 한정되어 있어 미리 예약해 주시는 것을 권해 드립니다. 이용 조건과 금액은 문의해 주시면 안내해 드립니다.</p>
+
+
   <!-- ===== SEO 본문 보강: 가격 안내 설명 ===== -->
   <section style="max-width:900px;margin:4rem auto 0;">
     <span class="section-label">GUIDE</span>
@@ -190,7 +212,11 @@
     <div style="margin-top:1.6rem;">
       <div style="border-top:1px solid rgba(201,169,110,.22);padding:1.3rem 0;">
         <p style="color:#f3e7cf;font-family:'Noto Serif KR',serif;font-size:1rem;margin-bottom:.6rem;">Q. 표시된 가격 외에 추가 비용이 있나요?</p>
-        <p style="color:var(--text-muted);font-size:0.9rem;line-height:2;">기본 주대와 위스키 세트 구성이 명확하게 안내되어 있습니다. 추가로 주문하시는 부분이 있을 경우에만 비용이 발생하며, 이용 전에 안내해 드리니 걱정하지 않으셔도 됩니다. 궁금하신 점은 미리 문의 주세요.</p>
+        <p style="color:var(--text-muted);font-size:0.9rem;line-height:2;">주대 외에 접객 비용(TC)과 룸 이용료가 별도로 발생합니다. 인원수와 이용 시간에 따라 금액이 달라지기 때문에 총액을 한 가지 숫자로 표시하기는 어렵습니다. 예약하실 때 방문 인원과 예상 시간을 알려주시면 예상 총액을 미리 계산해 안내해 드립니다.</p>
+      </div>
+      <div style="border-top:1px solid rgba(201,169,110,.22);padding:1.3rem 0;">
+        <p style="color:#f3e7cf;font-family:'Noto Serif KR',serif;font-size:1rem;margin-bottom:.6rem;">Q. TC가 무엇인가요?</p>
+        <p style="color:var(--text-muted);font-size:0.9rem;line-height:2;">매니저가 함께하는 자리에 발생하는 접객 비용을 말합니다. 인원수와 이용 시간을 기준으로 계산되며 12만원부터 시작합니다. 구성에 따라 금액이 달라지므로, 원하시는 형태를 말씀해 주시면 그에 맞춰 안내해 드립니다.</p>
       </div>
       <div style="border-top:1px solid rgba(201,169,110,.22);padding:1.3rem 0;">
         <p style="color:#f3e7cf;font-family:'Noto Serif KR',serif;font-size:1rem;margin-bottom:.6rem;">Q. 1부와 2부는 어떻게 다른가요?</p>
@@ -206,6 +232,10 @@
       </div>
     </div>
   </section>
+
+  <p style="max-width:900px;margin:2.5rem auto 0;text-align:center;font-size:0.9rem;color:var(--text-muted);">
+    비용을 더 자세히 알아보시려면 → <a href="entertainment-cost.html" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">강남 접대 비용 현실적으로 얼마?</a>
+  </p>
 
 
   <!-- 문의 유도 -->
