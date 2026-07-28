@@ -47,6 +47,53 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"선릉역에서 얼마나 걸리나요?","acceptedAnswer":{"@type":"Answer","text":"2호선 선릉역 1번 출구에서 도보 약 5분 거리입니다."}},{"@type":"Question","name":"주차가 가능한가요?","acceptedAnswer":{"@type":"Answer","text":"발렛 파킹을 이용하실 수 있습니다. 비용은 1만원이며, 방문 전에 미리 문의해 주시면 지원해 드리고 있습니다."}},{"@type":"Question","name":"픽업 서비스는 어디까지 되나요?","acceptedAnswer":{"@type":"Answer","text":"강남역, 역삼, 논현, 신논현, 삼성동, 선릉, 대치동 등 강남권 전 지역에서 무료 픽업이 가능합니다."}}]}
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NightClub",
+  "name": "강남 엘리트",
+  "alternateName": ["엘리트", "사라있네", "선릉 엘리트"],
+  "description": "선릉역 1번 출구 도보 5분 거리의 가라오케. 넓은 프라이빗 룸과 고급 음향 시설, 강남권 무료 픽업. 24시간 연중무휴 운영.",
+  "url": "https://ellite-gangnam.com",
+  "telephone": "+82-10-8145-1911",
+  "image": "https://ellite-gangnam.com/og-image.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "대치동 890-38 B1",
+    "addressLocality": "강남구",
+    "addressRegion": "서울특별시",
+    "addressCountry": "KR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "37.5043951275715",
+    "longitude": "127.05076851194276"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  }],
+  "priceRange": "₩₩₩",
+  "areaServed": [
+    {"@type":"Place","name":"선릉"},
+    {"@type":"Place","name":"대치동"},
+    {"@type":"Place","name":"역삼"},
+    {"@type":"Place","name":"삼성동"},
+    {"@type":"Place","name":"강남역"},
+    {"@type":"Place","name":"논현"},
+    {"@type":"Place","name":"신논현"}
+  ],
+  "amenityFeature": [
+    {"@type":"LocationFeatureSpecification","name":"프라이빗 룸","value":true},
+    {"@type":"LocationFeatureSpecification","name":"노래방 음향 시설","value":true},
+    {"@type":"LocationFeatureSpecification","name":"발렛 파킹","value":true},
+    {"@type":"LocationFeatureSpecification","name":"무료 픽업","value":true},
+    {"@type":"LocationFeatureSpecification","name":"VIP 룸","value":true}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -55,7 +102,6 @@
   <ul class="nav-links">
     <li><a href="index.html">홈</a></li>
     <li><a href="price.html">가격안내</a></li>
-    <li><a href="hours.html">영업시간</a></li>
     <li><a href="blog.html">블로그</a></li>
     <li><a href="location.html" class="active">오시는 길</a></li>
   </ul>
@@ -69,7 +115,6 @@
 <div class="nav-drawer" id="navDrawer">
   <a href="index.html">홈</a>
   <a href="price.html">가격안내</a>
-  <a href="hours.html">영업시간</a>
   <a href="blog.html">블로그</a>
   <a href="location.html" class="active">오시는 길</a>
   <a href="tel:010-8145-1911" class="drawer-tel">📞 010-8145-1911</a>
@@ -166,6 +211,17 @@
     </div>
   </section>
 
+  <section style="max-width:900px;margin:0 auto;padding-top:3.5rem;">
+    <span class="section-label">HOURS</span>
+    <h2 class="section-title">영업 시간</h2>
+    <div class="section-divider"></div>
+    <div style="color:var(--text-muted);font-size:0.92rem;line-height:2.1;margin-top:1.4rem;">
+      <p style="margin-bottom:1.2rem;">365일 연중무휴 24시간 운영합니다. 월요일부터 일요일까지 매일 24시간 영업하며, 요일에 관계없이 언제든 방문하실 수 있습니다.</p>
+      <p style="margin-bottom:1.1rem;"><strong style="color:#e8d5ae;font-weight:600;">1부 · 2부 안내</strong><br>새벽 01:00를 기준으로 1부와 2부로 나뉩니다. 두 시간대의 차이는 주대 가격 차이뿐이며, 2부 주대가 1부보다 10,000원 높습니다.</p>
+      <p><strong style="color:#e8d5ae;font-weight:600;">대청소 시간</strong><br>하루 중 약 3시간의 대청소 시간이 있습니다. 정확한 운영 시간은 전화로 문의해 주시면 친절하게 안내해 드립니다.</p>
+    </div>
+  </section>
+
   <section style="max-width:900px;margin:0 auto;padding-top:3.5rem;padding-bottom:1rem;">
     <span class="section-label">FAQ</span>
     <h2 class="section-title">위치 관련 자주 묻는 질문</h2>
@@ -190,7 +246,7 @@
 <footer>
   <span class="footer-logo">ELITE</span>
   <a href="tel:010-8145-1911" class="footer-tel">010-8145-1911</a>
-  <p class="footer-info">강남 엘리트 하이퍼블릭 · 서울특별시 강남구 대치동 890-38 B1<br>© 2025 ELITE GANGNAM HIGHPUBLIC. All rights reserved.</p>
+  <p class="footer-info">강남 엘리트 가라오케 · 서울특별시 강남구 대치동 890-38 B1<br>© 2025 ELITE GANGNAM KARAOKE. All rights reserved.</p>
 </footer>
 <div class="float-cta">
   <a href="tel:010-8145-1911" class="float-btn float-btn-tel">📞</a>

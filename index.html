@@ -182,20 +182,47 @@
 {
   "@context": "https://schema.org",
   "@type": "NightClub",
-  "name": "강남 엘리트 (ELITE)",
-  "description": "강남 대치동 선릉역 인근 프리미엄 가라오케. 강남권 전역 무료 픽업.",
-  "url": "https://ellite-gangnam.com/",
+  "name": "강남 엘리트",
+  "alternateName": ["엘리트", "사라있네", "선릉 엘리트"],
+  "description": "선릉역 1번 출구 도보 5분 거리의 가라오케. 넓은 프라이빗 룸과 고급 음향 시설, 강남권 무료 픽업. 24시간 연중무휴 운영.",
+  "url": "https://ellite-gangnam.com",
   "telephone": "+82-10-8145-1911",
+  "image": "https://ellite-gangnam.com/og-image.jpg",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "강남구 대치동 890-38 B1",
-    "addressLocality": "서울",
+    "streetAddress": "대치동 890-38 B1",
+    "addressLocality": "강남구",
     "addressRegion": "서울특별시",
     "addressCountry": "KR"
   },
-  "areaServed": ["강남","역삼","논현","신논현","삼성동","선릉","대치동"],
-  "openingHours": "Mo-Su 00:00-24:00",
-  "nearbyStations": "선릉역"
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "37.5043951275715",
+    "longitude": "127.05076851194276"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  }],
+  "priceRange": "₩₩₩",
+  "areaServed": [
+    {"@type":"Place","name":"선릉"},
+    {"@type":"Place","name":"대치동"},
+    {"@type":"Place","name":"역삼"},
+    {"@type":"Place","name":"삼성동"},
+    {"@type":"Place","name":"강남역"},
+    {"@type":"Place","name":"논현"},
+    {"@type":"Place","name":"신논현"}
+  ],
+  "amenityFeature": [
+    {"@type":"LocationFeatureSpecification","name":"프라이빗 룸","value":true},
+    {"@type":"LocationFeatureSpecification","name":"노래방 음향 시설","value":true},
+    {"@type":"LocationFeatureSpecification","name":"발렛 파킹","value":true},
+    {"@type":"LocationFeatureSpecification","name":"무료 픽업","value":true},
+    {"@type":"LocationFeatureSpecification","name":"VIP 룸","value":true}
+  ]
 }
 </script>
 </head>
@@ -206,7 +233,6 @@
   <ul class="nav-links">
     <li><a href="index.html" class="active">홈</a></li>
     <li><a href="price.html">가격안내</a></li>
-    <li><a href="hours.html">영업시간</a></li>
     <li><a href="blog.html">블로그</a></li>
     <li><a href="location.html">오시는 길</a></li>
   </ul>
@@ -220,7 +246,6 @@
 <div class="nav-drawer" id="navDrawer">
   <a href="index.html" class="active">홈</a>
   <a href="price.html">가격안내</a>
-  <a href="hours.html">영업시간</a>
   <a href="blog.html">블로그</a>
   <a href="location.html">오시는 길</a>
   <a href="tel:010-8145-1911" class="drawer-tel">📞 010-8145-1911</a>
@@ -333,12 +358,6 @@
       <span class="quick-desc">1부 ₩100,000부터<br>합리적인 가격 정찰제</span>
       <span class="quick-arrow">VIEW →</span>
     </a>
-    <a href="hours.html" class="quick-card">
-      <span class="quick-icon">⏰</span>
-      <span class="quick-name">영업시간</span>
-      <span class="quick-desc">365일 연중무휴<br>24시간 운영</span>
-      <span class="quick-arrow">VIEW →</span>
-    </a>
     <a href="blog.html" class="quick-card">
       <span class="quick-icon">📖</span>
       <span class="quick-name">블로그</span>
@@ -359,7 +378,7 @@
   <h2 class="section-title">강남권 전 지역 무료 픽업</h2>
   <div class="section-divider" style="margin-left:auto;margin-right:auto;"></div>
   <p style="color:var(--text-muted);font-size:0.9rem;line-height:2.2;max-width:700px;margin:0 auto 1rem;">
-    강남 엘리트 하이퍼블릭은 강남권 어디에 계시든 고급 차량으로 무료 픽업해 드립니다.<br>
+    강남 엘리트 가라오케은 강남권 어디에 계시든 고급 차량으로 무료 픽업해 드립니다.<br>
     강남역 · 역삼 · 논현 · 신논현 · 삼성동 · 선릉 · 대치동 · 삼성중앙 · 언주 · 매봉 등<br>
     강남 전역에서 편리하게 방문하실 수 있습니다.
   </p>
@@ -427,9 +446,9 @@
   <span class="footer-logo">ELITE</span>
   <a href="tel:010-8145-1911" class="footer-tel">010-8145-1911</a>
   <p class="footer-info">
-    강남 엘리트 하이퍼블릭 · 서울특별시 강남구 대치동 890-38 B1<br>
+    강남 엘리트 가라오케 · 서울특별시 강남구 대치동 890-38 B1<br>
     <a href="https://ellite.co.kr" style="color:inherit;text-decoration:underline;text-underline-offset:3px">하이퍼블릭 처음이라면? 이용 가이드 보기 →</a><br>
-    © 2025 ELITE GANGNAM HIGHPUBLIC. All rights reserved.
+    © 2025 ELITE GANGNAM KARAOKE. All rights reserved.
   </p>
 </footer>
 

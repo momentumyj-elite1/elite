@@ -54,6 +54,53 @@
   .blog-more { display: inline-block; margin-top: 1.2rem; color: var(--gold); font-size: 0.72rem; letter-spacing: 0.2em; }
   @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NightClub",
+  "name": "강남 엘리트",
+  "alternateName": ["엘리트", "사라있네", "선릉 엘리트"],
+  "description": "선릉역 1번 출구 도보 5분 거리의 가라오케. 넓은 프라이빗 룸과 고급 음향 시설, 강남권 무료 픽업. 24시간 연중무휴 운영.",
+  "url": "https://ellite-gangnam.com",
+  "telephone": "+82-10-8145-1911",
+  "image": "https://ellite-gangnam.com/og-image.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "대치동 890-38 B1",
+    "addressLocality": "강남구",
+    "addressRegion": "서울특별시",
+    "addressCountry": "KR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "37.5043951275715",
+    "longitude": "127.05076851194276"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  }],
+  "priceRange": "₩₩₩",
+  "areaServed": [
+    {"@type":"Place","name":"선릉"},
+    {"@type":"Place","name":"대치동"},
+    {"@type":"Place","name":"역삼"},
+    {"@type":"Place","name":"삼성동"},
+    {"@type":"Place","name":"강남역"},
+    {"@type":"Place","name":"논현"},
+    {"@type":"Place","name":"신논현"}
+  ],
+  "amenityFeature": [
+    {"@type":"LocationFeatureSpecification","name":"프라이빗 룸","value":true},
+    {"@type":"LocationFeatureSpecification","name":"노래방 음향 시설","value":true},
+    {"@type":"LocationFeatureSpecification","name":"발렛 파킹","value":true},
+    {"@type":"LocationFeatureSpecification","name":"무료 픽업","value":true},
+    {"@type":"LocationFeatureSpecification","name":"VIP 룸","value":true}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -62,7 +109,6 @@
   <ul class="nav-links">
     <li><a href="index.html">홈</a></li>
     <li><a href="price.html">가격안내</a></li>
-    <li><a href="hours.html">영업시간</a></li>
     <li><a href="blog.html" class="active">블로그</a></li>
     <li><a href="location.html">오시는 길</a></li>
   </ul>
@@ -76,7 +122,6 @@
 <div class="nav-drawer" id="navDrawer">
   <a href="index.html">홈</a>
   <a href="price.html">가격안내</a>
-  <a href="hours.html">영업시간</a>
   <a href="blog.html" class="active">블로그</a>
   <a href="location.html">오시는 길</a>
   <a href="tel:010-8145-1911" class="drawer-tel">📞 010-8145-1911</a>
@@ -150,7 +195,7 @@
 <footer>
   <span class="footer-logo">ELITE</span>
   <a href="tel:010-8145-1911" class="footer-tel">010-8145-1911</a>
-  <p class="footer-info">강남 엘리트 하이퍼블릭 · 서울특별시 강남구 대치동 890-38 B1<br>© 2025 ELITE GANGNAM HIGHPUBLIC. All rights reserved.</p>
+  <p class="footer-info">강남 엘리트 가라오케 · 서울특별시 강남구 대치동 890-38 B1<br>© 2025 ELITE GANGNAM KARAOKE. All rights reserved.</p>
 </footer>
 <div class="float-cta">
   <a href="tel:010-8145-1911" class="float-btn float-btn-tel">📞</a>
