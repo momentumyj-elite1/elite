@@ -14,7 +14,7 @@
 <meta property="og:description" content="방문 요일과 시각, 인원, 이용 시간을 선택하면 예상 비용을 항목별로 확인하실 수 있습니다. 주대·TC·룸 이용료를 바로 계산해 드립니다.">
 <meta property="og:url" content="https://ellite-gangnam.com/cost-calculator.html">
 <meta property="og:site_name" content="강남 엘리트">
-<meta property="og:image" content="https://ellite-gangnam.com/og-image.jpg">
+<meta property="og:image" content="https://ellite-gangnam.com/table-set.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -136,6 +136,9 @@
 </div>
 
 <div class="page-content">
+  <figure style="max-width:900px;margin:0 auto 2rem;">
+    <img src="table-set.jpg" alt="가라오케 룸에 준비된 위스키 세트와 테이블 세팅" loading="lazy" style="display:block;width:100%;max-width:100%;height:auto;">
+  </figure>
   <div class="calc-wrap">
     <div class="calc-form">
       <div class="calc-field">
@@ -313,6 +316,14 @@ function toggleDrawer(btn) {
   ['calc-day', 'calc-start', 'calc-stay', 'calc-people', 'calc-managers'].forEach(function (id) {
     $(id).addEventListener('change', calc);
   });
+  // 방문 요일 기본값: 접속 당일 (0시~15시 사이는 영업 기준상 전날 밤이므로 전날 요일)
+  (function () {
+    var days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    var now = new Date();
+    var d = now.getDay();
+    if (now.getHours() < 15) { d = (d + 6) % 7; }
+    $('calc-day').value = days[d];
+  })();
   calc();
 })();
 </script>
