@@ -301,16 +301,25 @@ def build_todos(cur_problems, cur_q, cur_p, prev_p, has_gsc):
             "점검에서 발견된 문제 — 방치 시 품질·노출 저하",
             "점검 %d번 지적" % (no or 0), f, {"method": "manual"}))
 
-    # 우선순위 2: 노출 20+ 인데 클릭 0 페이지 → 제목·설명 개선
+    # 우선순위 2: 노출 20+ 클릭 0 페이지 → 순위 구간별로 판정
+    #   1~10위=제목·설명 문제 / 11~30위=순위 올리기 / 31위+=판단 불가(제외)
     for fn, m in sorted(cur_p.items(), key=lambda kv: -kv[1]["impr"]):
         if m["impr"] >= 20 and m["clicks"] == 0:
+            pos = m["pos"]
+            if pos <= 10:
+                t_title = "%s 제목·설명 개선" % fn
+                t_why = "1~10위인데 클릭 0 — 제목/설명이 클릭을 못 만듦 (고치면 바로 효과)"
+            elif pos <= 30:
+                t_title = "%s 순위 올리기 (콘텐츠 보강)" % fn
+                t_why = "노출은 있으나 순위 11~30위라 클릭이 안 나옴 — 순위부터 올려야 함"
+            else:
+                continue  # 31위 이상은 순위가 낮아 판단 불가 → 제외
             todos.append(make_todo(
-                "%s 제목·설명 개선" % fn,
-                "노출은 있는데 클릭이 없음 — 제목/메타가 검색 의도와 안 맞을 가능성",
-                "노출 %d, 클릭 0" % int(m["impr"]), fn,
+                t_title, t_why,
+                "노출 %d · 클릭 0 · 순위 %.1f" % (int(m["impr"]), pos), fn,
                 {"method": "title_changed", "baseline": page_title(fn) or ""},
                 impressions=int(m["impr"]), clicks=int(m["clicks"]),
-                position=round(m["pos"], 1)))
+                position=round(pos, 1)))
 
     # 우선순위 3: 순위 11~20위 검색어 → 1페이지 진입
     for q, m in sorted(cur_q.items(), key=lambda kv: kv[1]["pos"]):
@@ -589,6 +598,16 @@ def h_rank_change(q_rounds):
     return "".join(parts)
 
 
+def zeroclick_tier(pos):
+    """노출 있는데 클릭 0인 항목을 순위 구간으로 판정.
+    반환: (라벨, 설명) 또는 None(31위+ = 판단 불가라 경고에서 제외)."""
+    if pos <= 10:
+        return ("제목·설명 문제", "고치면 바로 효과 — 1~10위인데 클릭이 없음")
+    if pos <= 30:
+        return ("순위를 더 올려야 함", "노출은 있으나 11~30위라 클릭이 안 나옴")
+    return None
+
+
 def h_push_now(q_rounds, p_rounds):
     parts = ["<h2>지금 밀어야 할 것</h2>"]
     if not q_rounds and not p_rounds:
@@ -598,7 +617,17 @@ def h_push_now(q_rounds, p_rounds):
     cur_p = p_rounds[-1][1] if p_rounds else {}
     prev_p = p_rounds[-2][1] if len(p_rounds) >= 2 else {}
 
-    # 1) 1페이지 진입 후보(11~20위 전부) + 페이지 이슈
+    # A) 브랜드 검색인데 5위 밖 — 별도 강조 (상호 검색은 1~3위가 정상)
+    brand_low = sorted([(q, m) for q, m in cur_q.items() if is_brand_query(q) and m["pos"] > 5],
+                       key=lambda kv: -kv[1]["impr"])
+    if brand_low:
+        parts.append("<p class='why'><b>⚠ 브랜드 검색인데 5위 밖</b> — 상호 검색은 1~3위가 정상이므로 최우선 대응 (정보형과 다른 기준)</p><ul>")
+        for q, m in brand_low[:15]:
+            parts.append("<li><b>%s</b> — 순위 %.1f · 노출 %d · 클릭 %d</li>"
+                         % (esc(q), m["pos"], int(m["impr"]), int(m["clicks"])))
+        parts.append("</ul>")
+
+    # B) 1페이지 진입 후보(11~20위) + 페이지 이슈(순위 구간별) + 노출 급감
     li = []
     for q, m in sorted([(q, m) for q, m in cur_q.items() if 10 < m["pos"] <= 20],
                        key=lambda kv: kv[1]["pos"]):
@@ -606,8 +635,11 @@ def h_push_now(q_rounds, p_rounds):
                   % (esc(q), m["pos"], int(m["impr"])))
     for f, m in sorted([(f, m) for f, m in cur_p.items() if m["impr"] >= 20 and m["clicks"] == 0],
                        key=lambda kv: -kv[1]["impr"]):
-        li.append("<li>페이지 <b>%s</b> — 노출 %d · 클릭 0 <span class='why'>(제목·설명이 클릭을 못 만듦)</span></li>"
-                  % (esc(f), int(m["impr"])))
+        tier = zeroclick_tier(m["pos"])
+        if not tier:
+            continue  # 31위+ 는 순위가 낮아 판단 불가 → 경고 제외
+        li.append("<li>페이지 <b>%s</b> — 노출 %d · 클릭 0 · 순위 %.1f <span class='why'>(%s — %s)</span></li>"
+                  % (esc(f), int(m["impr"]), m["pos"], tier[0], tier[1]))
     for f, cm in cur_p.items():
         pm = prev_p.get(f)
         if pm and pm["impr"] > 0 and (pm["impr"] - cm["impr"]) / pm["impr"] >= 0.30:
@@ -618,24 +650,32 @@ def h_push_now(q_rounds, p_rounds):
     else:
         parts.append("<p class='muted'>1페이지 진입 후보·페이지 이슈: 해당 없음</p>")
 
-    # 2) 좌우 2단: 클릭이 먹히는 검색어 | 노출 있는데 클릭 0인 검색어
+    # C) 좌우 2단: 클릭 먹히는 검색어 | 노출 있는데 클릭 0 (정보형, 순위 구간별·31위+ 제외)
     clked = sorted([(q, m) for q, m in cur_q.items() if m["clicks"] > 0],
                    key=lambda kv: -kv[1]["clicks"])[:15]
-    zcq = sorted([(q, m) for q, m in cur_q.items() if m["impr"] >= 10 and m["clicks"] == 0],
-                 key=lambda kv: -kv[1]["impr"])[:15]
+    zcq = sorted([(q, m) for q, m in cur_q.items()
+                  if not is_brand_query(q) and m["impr"] >= 10 and m["clicks"] == 0 and m["pos"] <= 30],
+                 key=lambda kv: kv[1]["pos"])[:15]
 
-    def col(title, items, render):
+    def col_click(title, items):
         h = "<div class='col'><h3>%s</h3>" % title
-        h += ("<ul>" + "".join(render(x) for x in items) + "</ul>") if items else "<p class='muted'>해당 없음</p>"
+        h += ("<ul>" + "".join("<li>✔ <b>%s</b> — 클릭 %d · 노출 %d · 순위 %.1f</li>"
+              % (esc(q), int(m["clicks"]), int(m["impr"]), m["pos"]) for q, m in items) + "</ul>") \
+            if items else "<p class='muted'>해당 없음</p>"
+        return h + "</div>"
+
+    def col_zero(title, items):
+        h = "<div class='col'><h3>%s</h3>" % title
+        if items:
+            h += "<ul>" + "".join("<li><b>%s</b> — 노출 %d · 순위 %.1f <span class='why'>(%s)</span></li>"
+                 % (esc(q), int(m["impr"]), m["pos"], zeroclick_tier(m["pos"])[0]) for q, m in items) + "</ul>"
+        else:
+            h += "<p class='muted'>해당 없음</p>"
         return h + "</div>"
 
     parts.append("<div class='cols'>")
-    parts.append(col("클릭이 먹히는 검색어 (실제 유입)", clked,
-                     lambda x: "<li>✔ <b>%s</b> — 클릭 %d · 노출 %d · 순위 %.1f</li>"
-                     % (esc(x[0]), int(x[1]["clicks"]), int(x[1]["impr"]), x[1]["pos"])))
-    parts.append(col("노출 있는데 클릭 0 (제목·설명 손볼 것)", zcq,
-                     lambda x: "<li><b>%s</b> — 노출 %d · 순위 %.1f</li>"
-                     % (esc(x[0]), int(x[1]["impr"]), x[1]["pos"])))
+    parts.append(col_click("클릭이 먹히는 검색어 (실제 유입)", clked))
+    parts.append(col_zero("노출 있는데 클릭 0 (정보형 · 31위+ 제외)", zcq))
     parts.append("</div>")
     return "".join(parts)
 
